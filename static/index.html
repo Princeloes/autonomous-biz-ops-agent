@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Business Operations Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/index.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Navigation -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-icon">🤖</div>
+                <div class="logo-text">
+                    <h1>AutoBiz</h1>
+                    <span>Operations Agent</span>
+                </div>
+            </div>
+            <div class="status-panel">
+                <div id="connection-status" class="status-pill offline">
+                    <span class="indicator"></span> Connecting...
+                </div>
+                <div id="mode-status" class="status-pill mode-badge">
+                    Mock Mode
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Layout -->
+        <main class="dashboard-grid">
+            
+            <!-- Left Panel: Instruction & Execution Trace -->
+            <section class="panel-section control-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-terminal"></i> Agent Control Center</h2>
+                    <span class="subtitle">Direct your AI Employee</span>
+                </div>
+                <div class="panel-body">
+                    <div class="input-group">
+                        <textarea id="agent-instruction" placeholder="E.g., Research recent advancements in LangGraph, create a summary report, and schedule a calendar meeting for review next Monday at 10 AM."></textarea>
+                        <button id="run-agent-btn" class="primary-btn">
+                            <span class="btn-text">Execute Mission</span>
+                            <span class="loader hidden"></span>
+                        </button>
+                    </div>
+
+                    <!-- Live Execution Plan -->
+                    <div class="plan-container">
+                        <h3>Execution Plan</h3>
+                        <div id="plan-steps" class="plan-steps-list">
+                            <div class="empty-state">No active plan. Input instructions to generate a plan.</div>
+                        </div>
+                    </div>
+
+                    <!-- Live Logs -->
+                    <div class="logs-container">
+                        <h3>Live Execution Logs</h3>
+                        <div id="console-logs" class="console-output">
+                            <span class="log-line system-log">System initialized. Awaiting commands...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Environment State & Hubs -->
+            <section class="panel-section dashboard-tabs-panel">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="mailbox-tab">Mailbox</button>
+                    <button class="tab-btn" data-tab="calendar-tab">Calendar</button>
+                    <button class="tab-btn" data-tab="memory-tab">Memory</button>
+                    <button class="tab-btn" data-tab="reports-tab">Reports</button>
+                </div>
+
+                <div class="tab-content active" id="mailbox-tab">
+                    <div class="tab-header-actions">
+                        <h3>Inbox & Sent Mail</h3>
+                    </div>
+                    <div id="email-list" class="list-container">
+                        <!-- Emails populated here -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="calendar-tab">
+                    <div class="tab-header-actions">
+                        <h3>Calendar Schedule</h3>
+                    </div>
+                    <div id="calendar-list" class="list-container">
+                        <!-- Events populated here -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="memory-tab">
+                    <div class="tab-header-actions">
+                        <h3>Long-Term Memory (Mem0)</h3>
+                        <div class="memory-form">
+                            <input type="text" id="new-memory-input" placeholder="Add custom memory/preference...">
+                            <button id="add-memory-btn" class="icon-btn"><i class="fas fa-plus"></i> Add</button>
+                        </div>
+                    </div>
+                    <div id="memory-list" class="list-container">
+                        <!-- Memories populated here -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="reports-tab">
+                    <div class="tab-header-actions">
+                        <h3>Generated Reports</h3>
+                    </div>
+                    <div id="reports-list" class="list-container">
+                        <!-- Reports populated here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Report Modal Viewer -->
+    <div id="report-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-report-title">Report Title</h2>
+            <div id="modal-report-body" class="markdown-body">
+                <!-- Report body -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/main.js"></script>
+</body>
+</html>
